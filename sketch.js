@@ -38,22 +38,28 @@ function draw() {
 
   cannon.display();
   tower.display();
-  cannonBall.display()
+  //cannonBall.display()
 
   for(var i=0; i< balls.length; i++){
-    
+    showCannonBalls(balls[i], i);
   }
  
 }
 
-
-
-
+//funcion para mostrar las balas
+function showCannonBalls(ball, index){
+  ball.display();
+  if(ball.body.position.x >= width || ball.body.position.y >= height - 50){
+    Matter.World.remove(world, ball.body);
+    balls.splice(index, 1);
+  }
+}
 
 
 function keyReleased() {
   if (keyCode === DOWN_ARROW) {
-    cannonBall.shoot()
+    //cannonBall.shoot()
+    balls[balls.length - 1].shoot();
   }
 }
 
